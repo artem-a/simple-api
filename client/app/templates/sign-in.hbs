@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Sign In</h2>
+
+  <div class="row">
+
+    {{#if errorMessage }}
+      <p class="text-center text-danger">
+        {{errorMessage}}
+      </p>
+    {{/if}}
+
+    {{#bs-form action="auth" class="col-md-4"}}
+      {{#bs-form-group}}
+        {{one-way-text identification
+          update=(action (mut identification))
+          placeholder="Username or Email"
+          class="form-control"}}
+      {{/bs-form-group}}
+
+      {{#bs-form-group}}
+        {{one-way-password password
+          update=(action (mut password))
+          placeholder="Password"
+          class="form-control"}}
+      {{/bs-form-group}}
+
+      {{bs-button defaultText="Sign In"
+        disabled=(if (or (is-empty identification) (is-empty password)) "disabled")
+        type="primary"
+        buttonType="submit"}}
+
+      {{link-to "Sign Up" "sign-up" class="btn btn-link"}}
+    {{/bs-form}}
+  </div>
+</div>

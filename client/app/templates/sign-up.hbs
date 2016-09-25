@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>Sign Up</h2>
+
+  <div class="row">
+
+    {{#if errorMessage }}
+      <p class="text-center text-danger">
+        {{errorMessage}}
+      </p>
+    {{/if}}
+
+    {{#bs-form action="createAccount" class="col-md-4"}}
+      {{#bs-form-group}}
+        {{one-way-text user.username
+          update=(action (mut user.username))
+          placeholder="Username"
+          class="form-control"}}
+
+        {{#if (and user.username (v-get user "username" "isInvalid"))}}
+        <span class="form-error help-block">
+          {{v-get user "username" "message"}}
+        </span>
+        {{/if}}
+      {{/bs-form-group}}
+
+      {{#bs-form-group}}
+        {{one-way-email user.email
+          update=(action (mut user.email))
+          placeholder="Email"
+          class="form-control"}}
+
+        {{#if (and user.email (v-get user "email" "isInvalid"))}}
+          <span class="form-error help-block">
+            {{v-get user "email" "message"}}
+          </span>
+        {{/if}}
+      {{/bs-form-group}}
+
+      {{#bs-form-group}}
+        {{one-way-password user.password
+          update=(action (mut user.password))
+          placeholder="Password"
+          class="form-control"}}
+
+        {{#if (and user.password (v-get user "password" "isInvalid"))}}
+          <span class="form-error help-block">
+            {{v-get user "password" "message"}}
+          </span>
+        {{/if}}
+      {{/bs-form-group}}
+
+      {{bs-button defaultText="Sign Up"
+        disabled=(if isUserValid "disabled")
+        type="primary"
+        buttonType="submit"}}
+    {{/bs-form}}
+  </div>
+</div>

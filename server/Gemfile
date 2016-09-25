@@ -1,0 +1,54 @@
+source "https://rubygems.org"
+
+# Core Stuff
+gem "rails", "~> 5.0.0", ">= 5.0.0.1"
+gem "puma"
+
+# Database Stuff
+gem "pg"
+gem "hiredis"
+gem "redis", require: ["redis", "redis/connection/hiredis"]
+gem "redis-rails"
+gem "connection_pool"
+
+# Auth{entication,orization}
+gem "doorkeeper"
+gem "sorcery"
+gem "pundit"
+gem "rolify"
+
+# Background tasks
+gem "sidekiq"
+
+# Miscellaneous Utilities
+gem "active_model_serializers"
+gem "missing_validators"
+gem "nokogiri"
+gem "paranoia"
+gem "counter_culture"
+gem "seed-fu"
+gem "multi_json"
+
+# Rack Middleware
+gem "rack-cors"
+
+# Optimizations and Profiling
+gem "fast_blank"
+gem "oj"
+
+group :development, :test do
+  gem "foreman"
+  gem "faker"
+  gem "dotenv-rails"
+  gem "pry-rails"
+  gem "annotate"
+  gem "letter_opener"
+
+  gem "byebug", platform: :mri
+end
+
+group :development do
+  gem "listen"
+  gem "spring"
+  gem "spring-watcher-listen", "~> 2.0.0"
+end

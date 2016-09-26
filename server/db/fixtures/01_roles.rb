@@ -1,4 +1,7 @@
 # Add roles
 
-Role.seed :id,
+roles = [
   { id: 1, name: "admin" }
+]
+
+Role.seed :id, *roles

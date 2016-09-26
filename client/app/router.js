@@ -12,6 +12,7 @@ RouterInstance.map(function() {
   this.route('dashboard');
 
   // Authentication
+  this.route('activate', { path: 'activate/:token' });
   this.route('sign-up');
   this.route('sign-in');
 });

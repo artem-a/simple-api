@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_action :doorkeeper_authorize!
+  skip_before_action :doorkeeper_authorize!, only: %i[create activate]
 
   def create
     build_user
@@ -13,15 +13,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def activate
+    load_user_by_activation_token
+
+    if @user
+      @user.activate!
+      respond_with_success @user
+    else
+      not_found
+    end
+  end
+
   private
 
   def user_params
-    jsonapi_params
+    jsonapi_params only: %i[username email password]
   end
 
   def build_user
     @user ||= User.new
     @user.assign_attributes user_params
+  end
+
+  def load_user_by_activation_token
+    @user ||= User.load_from_activation_token(params[:id])
   end
 
   def send_activation

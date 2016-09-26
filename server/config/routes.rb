@@ -2,12 +2,14 @@ Rails.application.routes.draw do
 
   scope :api do
     scope :v1 do
-      resources :users
+      resources :users do
+        get :activate, on: :member
+      end
     end
 
     use_doorkeeper do
-      controllers tokens: "tokens", token_info: "token_info"
       skip_controllers :applications, :authorized_applications, :authorizations
+      controllers tokens: :tokens
     end
   end
 

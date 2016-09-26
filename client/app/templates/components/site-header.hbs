@@ -13,8 +13,13 @@
 
   {{#bs-navbar-content}}
     {{#bs-navbar-nav class="navbar-right"}}
-      {{#bs-nav-item}}{{link-to "Sign In" "sign-in"}}{{/bs-nav-item}}
-      {{#bs-nav-item}}{{link-to "Sign Up" "sign-up"}}{{/bs-nav-item}}
+
+      {{#if session.isAuthenticated}}
+        {{#bs-nav-item}}<a href="#" {{action "invalidateSession"}}>Log out</a>{{/bs-nav-item}}
+      {{else}}
+        {{#bs-nav-item}}{{link-to "Sign In" "sign-in"}}{{/bs-nav-item}}
+        {{#bs-nav-item}}{{link-to "Sign Up" "sign-up"}}{{/bs-nav-item}}
+      {{/if}}
     {{/bs-navbar-nav}}
   {{/bs-navbar-content}}
 </div>

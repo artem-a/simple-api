@@ -18,6 +18,8 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    apiNamespace: '/api/v1',
+
     'ember-simple-auth': {
       authenticationRoute: 'sign-in',
       routeAfterAuthentication: 'dashboard',

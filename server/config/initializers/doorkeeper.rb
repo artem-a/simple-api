@@ -12,7 +12,8 @@ Doorkeeper.configure do
 
   # Authenticate in Resource Owner Password flow
   resource_owner_from_credentials do
-    fail "Please configure doorkeeper resource_owner_from_credentials block located in #{__FILE__}"
+    # fail "Please configure doorkeeper resource_owner_from_credentials block located in #{__FILE__}"
+    User.authenticate(params[:username], params[:password])
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.

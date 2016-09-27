@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925142732) do
+ActiveRecord::Schema.define(version: 20160927174612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "url"
+    t.string   "icon"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_companies_on_name", using: :btree
+    t.index ["user_id"], name: "index_companies_on_user_id", using: :btree
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false

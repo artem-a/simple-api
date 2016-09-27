@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    jsonapi_params only: %i[username email password]
+    jsonapi_params only: %i[username email password company_attributes]
   end
 
   def build_user

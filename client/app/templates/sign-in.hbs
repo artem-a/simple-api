@@ -10,6 +10,7 @@
     {{/if}}
 
     {{#bs-form action="auth" class="col-md-4"}}
+      {{! identification input }}
       {{#bs-form-group}}
         {{one-way-text identification
           update=(action (mut identification))
@@ -17,6 +18,7 @@
           class="form-control"}}
       {{/bs-form-group}}
 
+      {{! password input }}
       {{#bs-form-group}}
         {{one-way-password password
           update=(action (mut password))

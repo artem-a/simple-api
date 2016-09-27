@@ -30,6 +30,10 @@
 
 class User < ApplicationRecord
 
+  has_one :company, dependent: :destroy
+
+  accepts_nested_attributes_for :company
+
   validates :username,
     presence:   true,
     uniqueness: true,

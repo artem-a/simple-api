@@ -10,6 +10,10 @@
     {{/if}}
 
     {{#bs-form action="createAccount" class="col-md-4"}}
+      {{! User info }}
+      <h3>User info</h3>
+
+      {{! username input }}
       {{#bs-form-group}}
         {{one-way-text user.username
           update=(action (mut user.username))
@@ -23,6 +27,7 @@
         {{/if}}
       {{/bs-form-group}}
 
+      {{! email input }}
       {{#bs-form-group}}
         {{one-way-email user.email
           update=(action (mut user.email))
@@ -36,6 +41,7 @@
         {{/if}}
       {{/bs-form-group}}
 
+      {{! password input }}
       {{#bs-form-group}}
         {{one-way-password user.password
           update=(action (mut user.password))
@@ -49,8 +55,25 @@
         {{/if}}
       {{/bs-form-group}}
 
+      {{! company info }}
+      <h3>Company Info</h3>
+
+      {{! company name }}
+      {{#bs-form-group}}
+        {{one-way-text company.name
+          update=(action (mut company.name))
+          placeholder="Company name"
+          class="form-control"}}
+
+        {{#if (and company.name (v-get company "name" "isInvalid"))}}
+          <span class="form-error help-block">
+            {{v-get company "name" "message"}}
+          </span>
+        {{/if}}
+      {{/bs-form-group}}
+
       {{bs-button defaultText="Sign Up"
-        disabled=(if isUserValid "disabled")
+        disabled=(if (or isUserInvalid isCompanyInvalid) "disabled")
         type="primary"
         buttonType="submit"}}
     {{/bs-form}}

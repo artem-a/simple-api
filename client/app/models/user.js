@@ -1,5 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
@@ -20,5 +21,8 @@ const Validations = buildValidations({
 export default Model.extend(Validations, {
   username: attr('string'),
   email: attr('string'),
-  password: attr('string')
+  password: attr('string'),
+  companyAttributes: attr(),
+
+  company: belongsTo('company')
 });

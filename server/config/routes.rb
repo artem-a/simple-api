@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         get :activate, on: :member
       end
 
-      resources :reset_passwords, only: %i[show create]
+      resources :reset_passwords, only: %i[show create update]
     end
 
     use_doorkeeper do

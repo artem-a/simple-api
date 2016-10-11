@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :users do
         get :activate, on: :member
       end
+
+      resources :reset_passwords, only: %i[show create update]
     end
 
     use_doorkeeper do
@@ -12,7 +14,6 @@ Rails.application.routes.draw do
       controllers tokens: :tokens
     end
   end
-
 
   root "home#index"
 

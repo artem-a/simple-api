@@ -11,6 +11,9 @@ RouterInstance.map(function() {
 
   this.route('dashboard');
 
+  this.route('password-forgot');
+  this.route('password-reset', { path: 'password-reset/:token' });
+
   // Authentication
   this.route('activate', { path: 'activate/:token' });
   this.route('sign-up');

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927174612) do
+ActiveRecord::Schema.define(version: 20161011185033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(version: 20160927174612) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.string   "title",      null: false
+    t.text     "body"
+    t.string   "tags",                    array: true
+    t.integer  "ratings",                 array: true
+    t.json     "labels"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ratings"], name: "index_posts_on_ratings", using: :gin
+    t.index ["tags"], name: "index_posts_on_tags", using: :gin
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
   create_table "roles", force: :cascade do |t|

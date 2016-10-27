@@ -27,8 +27,12 @@ module SimpleApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # Include all concern directories in app/*/concerns
+    concern_dirs = Dir['app/*/concerns'].map { |d| File.expand_path(d) }
+
     # UTC all the way
     config.time_zone = "UTC"
+    config.active_record.default_timezone = :utc
 
     # Setup active job
     config.active_job.queue_adapter = :sidekiq

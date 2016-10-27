@@ -1,0 +1,56 @@
+{{#bs-form action=saveAction}}
+  {{! title input }}
+  {{#bs-form-group}}
+    {{one-way-text post.title
+      update=(action (mut post.title))
+      placeholder="Title"
+      class="form-control"}}
+  {{/bs-form-group}}
+
+  {{! body input }}
+  {{#bs-form-group}}
+    {{one-way-textarea post.body
+      update=(action (mut post.body))
+      placeholder="Body"
+      class="form-control"}}
+  {{/bs-form-group}}
+
+  {{#bs-form-group}}
+    <h4>Tags</h4>
+
+    {{#each post.tags as |tag index|}}
+      {{one-way-text tag
+        update=(action "updateTag" index)
+        placeholder="add a tag"
+        class="form-control"}}
+    {{/each}}
+
+    {{bs-button defaultText="Add tag"
+      type="default"
+      action="addTag"}}
+  {{/bs-form-group}}
+
+  {{#bs-form-group}}
+    <h4>Labels</h4>
+
+    {{#each post.labels as |label index|}}
+      {{one-way-text label.key
+        update=(action "updateLabel" index)
+        placeholder="add a label"
+        class="form-control"}}
+    {{/each}}
+
+    {{bs-button defaultText="Add label"
+      type="default"
+      action="addLabel"}}
+  {{/bs-form-group}}
+
+
+  {{bs-button defaultText="Save"
+    type="primary"
+    buttonType="submit"}}
+
+  {{bs-button defaultText="Cancel"
+    action=cancelAction
+    type="info"}}
+{{/bs-form}}

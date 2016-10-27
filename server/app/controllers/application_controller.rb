@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   include Pundit
+  include DoorkeeperHelpers
 
   before_action :doorkeeper_authorize!
 

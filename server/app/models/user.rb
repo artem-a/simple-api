@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
   has_one :company, dependent: :destroy
 
-  accepts_nested_attributes_for :company
+  has_many :posts, dependent: :destroy
 
   validates :username,
     presence:   true,
@@ -49,6 +49,8 @@ class User < ApplicationRecord
     presence: true,
     length:   { minimum: 6 },
     if: -> { new_record? || changes[:crypted_password] }
+
+  accepts_nested_attributes_for :company
 
   # authentication
   authenticates_with_sorcery!

@@ -9,7 +9,12 @@ const RouterInstance = Router.extend({
 RouterInstance.map(function() {
   this.route('home', { path: '/' });
 
-  this.route('dashboard');
+  this.route('dashboard', function() {
+    this.route('posts', function() {
+      this.route('new');
+      this.route('edit', { path: ':post_id/edit' });
+    });
+  });
 
   this.route('password-forgot');
   this.route('password-reset', { path: 'password-reset/:token' });

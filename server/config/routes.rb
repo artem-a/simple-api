@@ -6,6 +6,7 @@ Rails.application.routes.draw do
         get :activate, on: :member
       end
 
+      resources :posts
       resources :reset_passwords, only: %i[show create update]
     end
 
